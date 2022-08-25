@@ -1,2 +1,2 @@
 # googlescholar-scraper
-Simple tool to scrape profiles of google scholar
+Simple tool to scrape google scholar profiles
