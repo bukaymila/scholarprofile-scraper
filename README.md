@@ -15,8 +15,8 @@ The output will be a .txt file with the name of the scholar with all publication
 **scrapper.py** is accessed by **ui.py** allowing a simple user interface using tkinter and customtkinter
 
 # Requiremenets
-beautifulsoup4==4.11.1
-customtkinter==4.5.10
-lxml==4.9.1
-requests==2.28.1
+beautifulsoup4==4.11.1 <br />
+customtkinter==4.5.10 <br />
+lxml==4.9.1 <br />
+requests==2.28.1 <br />
 tk==0.1.0
