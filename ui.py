@@ -1,6 +1,7 @@
 import customtkinter
+import time
 from tkinter import *
-from scrapper import main
+from scraper import main
 
 
 # Set custom tkinter aperaances
@@ -15,17 +16,17 @@ def _quit():
 # Define customtkinter variable
 window = customtkinter.CTk()
 window.protocol('WM_DELETE_WINDOW', _quit)
-window.title('Google scholar profile scrapper')
+window.title('Google scholar profile scraper')
 window.resizable(width=False, height=False)
 window.geometry('470x185')
 #window.iconbitmap('')
 
 # Define inputs
 def get_all():
+    labelresult.configure(text='...loading')
     url = str(entryinput.get())
     result = main(url)
-    labelresult['text'] = result
-
+    labelresult.after(1000,lambda:labelresult.configure(text= result))
 
 # Frame for elements in the window
 frm_form = customtkinter.CTkFrame(pady=10)

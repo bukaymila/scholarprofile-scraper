@@ -1,11 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 
-def main():
+def main(url):
     count = 0
     headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
-    # url = input('Specific Link Google Scholar profile: ')
-    url = 'https://scholar.google.com/citations?hl=en&user=f-F4yywAAAAJ'
     fullurl = url + '&view_op=list_works&sortby=pubdate&cstart='+ str(count)+'&pagesize=100'
 
     response=requests.get(fullurl,headers=headers)
@@ -21,10 +19,7 @@ def main():
                 file.write(body[x].contents[0].contents[1].get_text() + "\n")
                 file.write(body[x].contents[0].contents[2].get_text() + "\n")
                 file.write("\n")
-            # print(body[x].contents[0].contents[0].get_text())
-            # print(body[x].contents[0].contents[1].get_text())
-            # print(body[x].contents[0].contents[2].get_text())
-            # print("\n")
+
             count+=100
             fullurl = url + '&view_op=list_works&sortby=pubdate&cstart='+ str(count)+'&pagesize=100'
             response=requests.get(fullurl, headers=headers)
@@ -37,13 +32,6 @@ def main():
                 file.write(body[x].contents[0].contents[1].get_text() + "\n")
                 file.write(body[x].contents[0].contents[2].get_text() + "\n")
                 file.write("\n")
-            # print(body[x].contents[0].contents[0].get_text())
-            # print(body[x].contents[0].contents[1].get_text())
-            # print(body[x].contents[0].contents[2].get_text())
-            # print("\n")
+
     file.close()
     return "Done"
-
-if __name__ == "__main__":
-    res = main()
-    print(res)
