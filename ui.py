@@ -1,12 +1,25 @@
+import os, sys
 import customtkinter
-import time
 from tkinter import *
 from scraper import main
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+ico = resource_path(".\icons8.com\google-scholar-white.ico")
 
 # Set custom tkinter aperaances
 customtkinter.set_appearance_mode('dark')
 customtkinter.set_default_color_theme('dark-blue')
+
+# Icon path
 
 # Quitter
 def _quit():
@@ -19,7 +32,7 @@ window.protocol('WM_DELETE_WINDOW', _quit)
 window.title('Google scholar profile scraper')
 window.resizable(width=False, height=False)
 window.geometry('470x185')
-#window.iconbitmap('')
+window.iconbitmap(ico)
 
 # Define inputs
 def get_all():
