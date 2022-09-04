@@ -23,9 +23,12 @@ window.geometry('470x185')
 
 # Define inputs
 def get_all():
-    labelresult.configure(text='...loading')
-    url = str(entryinput.get())
-    result = main(url)
+    try:
+        labelresult.configure(text='...loading')
+        url = str(entryinput.get())
+        result = main(url)
+    except:
+        result = "Invalid URL, try again"
     labelresult.after(1000,lambda:labelresult.configure(text= result))
 
 # Frame for elements in the window
