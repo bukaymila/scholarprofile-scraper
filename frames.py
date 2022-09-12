@@ -1,4 +1,3 @@
-import time
 import customtkinter
 import pandas as pd
 
