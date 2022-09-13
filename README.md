@@ -12,11 +12,12 @@ The output will be a .txt file with the name of the scholar with all publication
 **main.py** can be run directly with python
 
 # ui.py
-**scrapper.py** is accessed by **ui.py** allowing a simple user interface using tkinter and customtkinter
+**scrapper.py** and **frames.py** is accessed by **ui2.0.py** allowing a simple user interface using tkinter and customtkinter
 
 # Requiremenets
 beautifulsoup4==4.11.1 <br />
 customtkinter==4.5.10 <br />
 lxml==4.9.1 <br />
 requests==2.28.1 <br />
-tk==0.1.0
+tk==0.1.0 <br />
+auto-py-to-exe==2.22.0

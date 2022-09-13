@@ -1,9 +1,59 @@
+from sre_parse import State
+from tkinter import DISABLED
 import customtkinter
 import pandas as pd
 
 from threading import Thread
 from tkinter.filedialog import askopenfilename
 from scraper import ScholarList, scrape_scholar
+
+# Help frames
+class HelpSingleEntry(customtkinter.CTkFrame):
+    def __init__(self, *args, header_name="Single URL entry", **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.header_name = header_name
+        self.header = customtkinter.CTkLabel(self, text=self.header_name, width=438)
+        self.header.grid(row=0, column=0, padx=10, pady=10)
+
+        texts = """Ensure the URL ends with user code, \'user=f-F4yywAAAAJ\'.
+This is a good URL: https://scholar.google.com/citations?user=R-tIL00AAAAJ
+
+If the URL ends with anything else, like \'&hl=en&oi=ao\', do remove it.
+This is a bad URL: https://scholar.google.com/citations?user=R-tIL00AAAAJ&view_op=list_works"""
+
+        entry1 = customtkinter.StringVar(value=texts)
+
+        self.labeltips1 = customtkinter.CTkTextbox(self, width=460, border_width=0, height=85)
+        self.labeltips1.grid(row=2)
+        self.labeltips1.insert('end', texts)
+
+
+class HelpFileEntry(customtkinter.CTkFrame):
+    def __init__(self, *args, header_name="Text file upload", **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.header_name = header_name
+        self.header = customtkinter.CTkLabel(self, text=self.header_name)
+        self.header.grid(row=0, column=0, padx=160, pady=10)
+
+        texts = """Ensure the URLs follow the single entry format.
+There is a sample text file that you can download below.
+
+If there is any error, check the name of the last file in your folder.
+There should be a bad URL for that scholar or the scholar after them.
+
+Example:
+For the sample text file if the last scholar was Andrew Prahl.txt,
+then the URL for Andrew Prahl or Benjamin Horton has caused the error.
+
+If there is no known error, double check your text file to ensure no missing scholars"""
+
+        entry1 = customtkinter.StringVar(value=texts)
+
+        self.labeltips1 = customtkinter.CTkTextbox(self, width=460, border_width=0, height=155)
+        self.labeltips1.grid(row=2)
+        self.labeltips1.insert('end', texts)
 
 # Define frames - Singe Entry
 class SingleEntry(customtkinter.CTkFrame):
@@ -22,25 +72,22 @@ class SingleEntry(customtkinter.CTkFrame):
 
         self.header_name = header_name
         self.header = customtkinter.CTkLabel(self, text=self.header_name)
-        self.header.grid(row=0, column=0, padx=10, pady=10)
+        self.header.grid(row=0, column=0, padx=160, pady=10)
 
-        self.labelinput = customtkinter.CTkLabel(self, text = 'Input profile URL (https://scholar.google.com/citations?user=f-F4yywAAAAJ)')
-        self.labelinput.grid(row=1, padx=10)
-
-        self.labeltips = customtkinter.CTkLabel(self, text = 'Be sure the url ends with user code, remove \'&hl=en&oi=ao\' if any')
-        self.labeltips.grid(row=2)
+        self.labelinput = customtkinter.CTkLabel(self, text = 'Input profile URL')
+        self.labelinput.grid(row=1)
 
         self.entryinput = customtkinter.CTkEntry(self, width=400)
-        self.entryinput.grid(row=3)
+        self.entryinput.grid(row=2)
 
         self.labelblank = customtkinter.CTkLabel(self, text=' ')
-        self.labelblank.grid(row=4)
+        self.labelblank.grid(row=3)
 
         self.button = customtkinter.CTkButton(self, text='Run scraper', command=get_all)
-        self.button.grid(row=5)
+        self.button.grid(row=4)
 
         self.labelresult = customtkinter.CTkLabel(self, text=' ')
-        self.labelresult.grid(row=6, pady=5)
+        self.labelresult.grid(row=5, pady=5)
 
 # Define frames - Input .txt
 class InputFile(customtkinter.CTkFrame):
