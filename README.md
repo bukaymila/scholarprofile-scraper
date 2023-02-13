@@ -14,7 +14,7 @@ The output will be a .txt file with the name of the scholar with all publication
 # ui.py
 **scrapper.py** and **frames.py** is accessed by **ui2.0.py** allowing a simple user interface using tkinter and customtkinter
 
-# Requiremenets
+# Requirements
 beautifulsoup4==4.11.1 <br />
 customtkinter==4.5.10 <br />
 lxml==4.9.1 <br />
